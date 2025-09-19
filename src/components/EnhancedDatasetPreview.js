@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../api/client';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -47,7 +48,7 @@ const EnhancedDatasetPreview = ({ onDatasetSelect }) => {
   const loadDatasetPreview = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/enhanced_dataset_preview', {
+  const response = await fetch(apiUrl('/enhanced_dataset_preview'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

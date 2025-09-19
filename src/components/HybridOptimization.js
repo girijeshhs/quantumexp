@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../api/client';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -21,7 +22,7 @@ const HybridOptimization = () => {
   const fetchAvailableOptimizers = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/hybrid_optimization/available');
+  const response = await fetch(apiUrl('/hybrid_optimization/available'));
       if (response.ok) {
         const data = await response.json();
         setAvailableOptimizers(data);
@@ -43,7 +44,7 @@ const HybridOptimization = () => {
     setOptimizationResults(null);
     
     try {
-      const response = await fetch('http://localhost:8000/hybrid_optimization/run', {
+  const response = await fetch(apiUrl('/hybrid_optimization/run'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +82,7 @@ const HybridOptimization = () => {
     setComparisonResults(null);
     
     try {
-      const response = await fetch('http://localhost:8000/hybrid_optimization/compare', {
+  const response = await fetch(apiUrl('/hybrid_optimization/compare'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

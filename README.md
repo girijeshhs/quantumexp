@@ -306,3 +306,12 @@ For questions, issues, or contributions:
 ---
 
 **Built with ❤️ for the quantum computing and machine learning community**
+ 
+### Netlify Deployment Notes
+
+- Build command: `npm run build`
+- Publish directory: `build`
+- SPA routing: included via `public/_redirects` and `netlify.toml` (fallback to `/index.html`).
+- Backend API: set `REACT_APP_API_URL` in Netlify Site settings → Environment variables to your backend URL (e.g., `https://your-backend.onrender.com`).
+
+If no backend is configured, the app falls back to mock results for core flows so the UI still works on Netlify.

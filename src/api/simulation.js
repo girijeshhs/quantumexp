@@ -1,11 +1,10 @@
 // API for quantum-classical ML simulation
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+import { apiUrl } from './client';
 
 // Generate dataset preview
 export const generateDatasetPreview = async (params) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/generate_dataset`, {
+  const response = await fetch(apiUrl('/generate_dataset'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +73,7 @@ const generateMockDataset = (params) => {
 // Run the full simulation
 export const runSimulation = async (params) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/run_simulation`, {
+  const response = await fetch(apiUrl('/run_simulation'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +156,7 @@ const generateMockComparisonPlot = (results) => {
 // Hyperparameter optimization
 export const optimizeHyperparameters = async (config) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/optimize_hyperparameters`, {
+  const response = await fetch(apiUrl('/optimize_hyperparameters'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

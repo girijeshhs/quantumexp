@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../api/client';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -20,7 +21,7 @@ const QuantumHardwareManager = () => {
   const fetchHardwareStatus = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/quantum_hardware/status');
+  const response = await fetch(apiUrl('/quantum_hardware/status'));
       if (response.ok) {
         const data = await response.json();
         setHardwareStatus(data);
@@ -37,7 +38,7 @@ const QuantumHardwareManager = () => {
   const connectToProvider = async (provider) => {
     setConnecting(true);
     try {
-      const response = await fetch(`http://localhost:8000/quantum_hardware/connect?provider=${provider}`, {
+  const response = await fetch(apiUrl(`/quantum_hardware/connect?provider=${provider}`), {
         method: 'POST'
       });
       
@@ -60,7 +61,7 @@ const QuantumHardwareManager = () => {
   const estimateCost = async (provider, shots = 1000, qubits = 2) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/quantum_hardware/estimate_cost?provider=${provider}&shots=${shots}&num_qubits=${qubits}`,
+        apiUrl(`/quantum_hardware/estimate_cost?provider=${provider}&shots=${shots}&num_qubits=${qubits}`),
         { method: 'POST' }
       );
       
@@ -76,7 +77,7 @@ const QuantumHardwareManager = () => {
   const runOnHardware = async (provider) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/quantum_hardware/run', {
+  const response = await fetch(apiUrl('/quantum_hardware/run'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# Optional: set Node version if needed
+#[[build.environment]]
+#  NODE_VERSION = "18"
+
+# SPA fallback (alternative to public/_redirects)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
